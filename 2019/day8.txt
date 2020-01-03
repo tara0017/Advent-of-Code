@@ -1,0 +1,99 @@
+f = open("day8_input.txt", "r")
+
+
+for x in f:
+    data = (x)
+
+
+image_width  = 25
+image_height = 6
+
+num_layers = int(len(data) / (image_width*image_height))
+
+layers = []
+
+for i in range(num_layers):
+    layers.append(data[i*image_width*image_height:(i+1)*image_width*image_height])
+
+#print (layers[0])
+#print (layers[-1])
+
+digit_count = []
+least_zeros = image_width * image_height
+
+for layer in layers:
+    layer_digit_count = [0, 0, 0]
+    for digit in layer:
+        if digit == '0':
+            layer_digit_count[0] += 1
+        elif digit == '1':
+            layer_digit_count[1] += 1
+        elif digit == '2':
+            layer_digit_count[2] += 1
+    digit_count.append(layer_digit_count)
+    if layer_digit_count[0] < least_zeros:
+        least_zeros = layer_digit_count[0]
+        print(layer_digit_count, layer_digit_count[1] * layer_digit_count[2])
+
+
+def get_digit(r, c):
+    global layers
+    layer_number = 1
+    digit = layers[0][row*25 + col]
+    while digit == "2":
+        layer_number += 1
+        digit = layers[layer_number][row*25 + col]
+    return digit
+
+final = []
+for row in range(image_height):
+    s = ""
+    for col in range(image_width):
+        digit = layers[0][row*25 + col]
+        if digit == "2":
+            digit = get_digit(row, col)
+        if digit == "0":
+            s = s+ "B"
+        elif digit == "1":
+            s = s+ "."
+        final.append(digit)
+    print(s)
+    
+print (final)
+import turtle
+turtle.speed(0)
+def draw_rect():
+    turtle.color("black")
+    turtle.begin_fill()
+    for i in range(4):
+        turtle.left(90)
+        turtle.forward(25)
+    turtle.end_fill()
+    turtle.forward(25)
+
+def new_line():
+    turtle.backward(25*25)
+    turtle.right(90)
+    turtle.forward(25)
+    turtle.left(90)
+
+#for i in range(2):
+#    draw_rect()
+
+
+turtle.penup()
+turtle.setposition(-300, 0)
+for i in range(len(final)):
+    if i > 0 and i%25 == 0:
+        new_line()
+    if final[i] == "0":
+        turtle.forward(25)
+    if final[i] == "1":
+        draw_rect()
+    
+
+
+
+
+
+    
