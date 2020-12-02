@@ -34,7 +34,6 @@ for x in f:
     x = x.replace('-', ' ')
     x = x.replace(':', '')
     x = x.split()
-    #print(x)
     if is_valid_password(x):
         count += 1
     if is_valid_password2(x):
