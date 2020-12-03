@@ -26,10 +26,12 @@ for x in f:
     tree_map.append(row)
 
 
-print(check_slope(1,1))
-print(check_slope(3,1))
-print(check_slope(5,1))
-print(check_slope(7,1))
-print(check_slope(1,2))
+product = 1
+product *= (check_slope(1,1))
+product *= (check_slope(3,1))
+product *= (check_slope(5,1))
+product *= (check_slope(7,1))
+product *= (check_slope(1,2))
+print(product)
 
 
