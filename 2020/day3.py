@@ -25,7 +25,10 @@ for x in f:
             row.append(1)
     tree_map.append(row)
 
+# part 1
+print((check_slope(3,1)))
 
+# part 2
 product = 1
 product *= (check_slope(1,1))
 product *= (check_slope(3,1))
