@@ -1,6 +1,4 @@
 # day10
-import tree, node
-
 
 def get_values_at_most_three_away(v):
     values = []
