@@ -37,7 +37,6 @@ def part1():
                             break
 
                 if is_new_node:
-                    #else:
                     #create a duplicate path
                     new_path = copy.deepcopy(p)
                     
@@ -77,7 +76,6 @@ def part2_old():
                     new_path = copy.deepcopy(p)
                     new_path.append(current_n)
                     paths.add(tuple(new_path))
-                    #print_names_in_path(new_path)
                     continue
 
                 # cannot go back to start
@@ -94,7 +92,6 @@ def part2_old():
                             break
 
                 if is_new_node:
-                    #else:
                     #create a duplicate path
                     new_path = copy.deepcopy(p)
                     
@@ -141,7 +138,6 @@ def part2_faster_w_sets():
                     new_path = copy.deepcopy(p)
                     new_path.add_cave(current_n)
                     paths.add(new_path)
-                    #print_names_in_path(new_path)
                     continue
 
                 # cannot go back to start
@@ -153,18 +149,8 @@ def part2_faster_w_sets():
                     if current_n.name in p.visited_cave_names:
                         if p.duplicate_lowercase == True:
                             is_new_node = False
-                """      
-                    for node in p:
-
-                        if node.name == current_n.name:
-                            if duplicate_already_exists(p):
-                                is_new_node = False
-                            break
-                -----------------
-                """
 
                 if is_new_node:
-                    #else:
                     #create a duplicate path
                     new_path = copy.deepcopy(p)
                     
@@ -300,19 +286,10 @@ def dfs(p):
     
     for n in last_cave.neighbors:
         new_p = copy.deepcopy(p)
-
-        
-        #print(n.name, end = '\t')
-        #print_names_in_path(new_p.order)
         
         if n.name == 'end':
-            """
-            p.add_cave(n)
-            paths.add(p)
-            """
             new_p.add_cave(n)
             paths.add(new_p)
-            # continue
         
         elif n.name == 'start':
             continue
@@ -325,30 +302,18 @@ def dfs(p):
                 if new_p.duplicate_lowercase == True:
                     continue
                 else:
-                    """
-                    p.add_cave(n)
-                    dfs(p)
-                    """
                     new_p = copy.deepcopy(p)
                     new_p.add_cave(n)
                     dfs(new_p)
                 
                 # 1st case of a duplicate
             else:
-                """
-                p.add_cave(n)
-                dfs(p)
-                """
                 new_p = copy.deepcopy(p)
                 new_p.add_cave(n)
                 dfs(new_p)
             
 
         else:                               # uppercase cave
-            """
-            p.add_cave(n)
-            dfs(p)
-            """
             #print('here')
             new_p.add_cave(n)
             dfs(new_p)
@@ -369,12 +334,6 @@ def part2_dfs():
     p = path()
     p.add_cave(s)
     dfs(p)
-
-    """
-    for p in paths:
-        print_names_in_path(p.order)
-    """
-    
     
     print('length of paths =', len(paths))
 
